@@ -15,7 +15,8 @@ import java.io.InputStream;
 
 public class ParallaxGameObject extends GameObject {
     Bitmap bitmap,reversedBitmap;
-    float speed = 100;
+    float speed = 50;
+
 
     public void loadImage(String filename,
                           AssetManager manager,int w,int h,

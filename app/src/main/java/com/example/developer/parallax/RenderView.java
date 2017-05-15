@@ -21,8 +21,11 @@ public class RenderView extends View {
     int r = 200,g=200,b=200;
 
     ParallaxGameObject parallaxGameObject,chaoGameObject;
-    MainCharacterObject player;
+    MainCharacterObject player, obstaculo;
     GestureDetector gestureDetector;
+
+    private boolean pulando = false;
+    private float chao;
 
     public RenderView(Context context) {
         super(context);
@@ -55,13 +58,18 @@ public class RenderView extends View {
                         true,false);
         chaoGameObject.layer = 2;
         chaoGameObject.y = getHeight()-chaoGameObject.height;
-        chaoGameObject.speed = 200;
+        chaoGameObject.speed = 100;
         GameResources.getInstance().getGameObjectList().add(chaoGameObject);
 
         player = new MainCharacterObject("runner.png",getContext().getAssets());
-        player.x = 650;
-        player.y = 685;
+        player.x = 300;
+        player.y = 610;
         GameResources.getInstance().getGameObjectList().add(player);
+
+        obstaculo = new MainCharacterObject("runner.png",getContext().getAssets());
+        obstaculo.x = 600;
+        obstaculo.y = 610;
+        GameResources.getInstance().getGameObjectList().add(obstaculo);
     }
 
     @Override
@@ -90,16 +98,17 @@ public class RenderView extends View {
 
         @Override
         public boolean onDown(MotionEvent event) {
-            switch (event.getAction()) {
-                case ACTION_DOWN:
-                    int tempy = player.y;
-                    player.y = player.y - 50;
-                    player.y = tempy;
-                    break;
-                case ACTION_UP:
-                    break;
-            }
+            if(event.getAction() == ACTION_DOWN ){
+                if(!player.jump && player.y == 610){
+                    player.jump = true;
+                }
 
+                return  false;
+
+            }
+            if(event.getAction() == ACTION_UP){
+                player.y = player.y + 50;
+            }
             return true;
         }
 
