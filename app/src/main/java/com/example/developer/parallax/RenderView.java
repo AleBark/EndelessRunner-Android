@@ -2,11 +2,13 @@ package com.example.developer.parallax;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Chronometer;
 
 import static android.view.MotionEvent.ACTION_DOWN;
 import static android.view.MotionEvent.ACTION_UP;
@@ -23,6 +25,8 @@ public class RenderView extends View {
     ParallaxGameObject parallaxGameObject,chaoGameObject;
     MainCharacterObject player, obstaculo;
     GestureDetector gestureDetector;
+    Chronometer chronometer;
+    TextGameObject textGameObject;
 
     private boolean pulando = false;
     private float chao;
@@ -70,6 +74,13 @@ public class RenderView extends View {
         obstaculo.x = 600;
         obstaculo.y = 610;
         GameResources.getInstance().getGameObjectList().add(obstaculo);
+
+        textGameObject = new TextGameObject();
+        textGameObject.text = "0 metros";
+        textGameObject.color = Color.WHITE;
+        textGameObject.x = 1450;
+        textGameObject.y = 50;
+        GameResources.getInstance().getGameObjectList().add(textGameObject);
     }
 
     @Override
