@@ -8,11 +8,10 @@ import android.provider.Settings;
  * Created by developer on 15/05/17.
  */
 
-public class TextGameObject extends GameObject {
+public class TextGameOver extends GameObject {
     public int color, size = 50;
     String text = "";
     float metros = 0;
-    public boolean jogando = true;
 
     @Override
     public void draw(Canvas canvas, Paint paint) {
@@ -24,12 +23,6 @@ public class TextGameObject extends GameObject {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-
-        metros++;
-
-        if(jogando){
-            text = metros/100 + " metros";
-        }
 
     }
 }

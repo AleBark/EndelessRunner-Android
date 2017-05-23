@@ -12,17 +12,17 @@ import android.graphics.Paint;
 import android.util.Log;
 import android.view.View;
 
-public class MainCharacterObject extends AnimatedImageGameObject {
+public class EnemyGameObject extends AnimatedImageGameObject {
 
 
     Matrix matrix = new Matrix();
     public float  angle = 0;
-    public float velocity = 500;
-    public boolean jump = false;
-    private int pulo = 100;
-    public  float heightInicial;
-    public MainCharacterObject(String file, AssetManager assetManager){
-        loadImages(file,assetManager,7,1);
+    public float velocity = 100;
+    public float xInicial;
+
+
+    public EnemyGameObject(String file, AssetManager assetManager){
+        loadImages(file,assetManager,11,1);
         timeNextFrame = 700;
     }
 
@@ -34,19 +34,12 @@ public class MainCharacterObject extends AnimatedImageGameObject {
         x += Math.cos(angle) * deltaTime * velocity/100000;
         y += Math.sin(angle) * deltaTime * velocity/100000;
 
-        if(jump) {
-
-            if(y <= 300){
-                jump = false;
-            }else {
-                y -= 10;
-            }
-
-        }else {
-            if(y != heightInicial) {
-                y += 10;
-            }
+        x -=20;
+        if(x <= 0){
+            x = (int)xInicial;
         }
+
+
 
     }
 
@@ -57,7 +50,6 @@ public class MainCharacterObject extends AnimatedImageGameObject {
         matrix.preRotate((float)angle*180.0f/(float)Math.PI,width/2,height/2);
         canvas.drawBitmap(anim[currentFrame],matrix,paint);
     }
-
 
 }
 

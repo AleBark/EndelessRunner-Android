@@ -30,12 +30,10 @@ public class GameResources {
         this.gameObjectList = gameObjectList;
     }
 
-
     public void updateAndDraw(float deltaTime, Canvas canvas, Paint paint){
         for(GameObject gameObject : gameObjectList){
             gameObject.update(deltaTime);
             gameObject.draw(canvas,paint);
         }
     }
-
 }
