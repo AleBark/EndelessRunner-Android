@@ -122,9 +122,16 @@ public class RenderView extends View {
 
                 Iterator<GameObject> i = GameResources.getInstance().getGameObjectList().iterator();
                 while (i.hasNext()) {
-                    i.remove();
+                    GameObject s = i.next(); // must be called before you can call i.remove()
+                    if(i instanceof TextGameObject){
+                        ((TextGameObject) i).jogando = false;
+                    }else {
+                        i.remove();
+                    }
                 }
+                GameResources.getInstance().jogadores.put("Tobias",String.valueOf(textGameObject.metros));
                 GameResources.getInstance().getGameObjectList().add(gameOver);
+                GameResources.getInstance().getGameObjectList().add(pontuacao);
 
             }
         }

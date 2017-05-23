@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -11,6 +12,7 @@ public class GameResources {
 
     private static GameResources ourInstance = new GameResources();
     List<GameObject> gameObjectList = new ArrayList<>();
+    public HashMap<String,String> jogadores = new HashMap<>();
 
 
 
